@@ -87,7 +87,6 @@ api = Namespace('Multiple', description='Multiple Documents related operations')
 
 multi = api.model('url', {
 'url': fields.String(required=True, description='The Queryentifier'),
-# 'source': fields.String(required=True, description='topic'),
 'topic': fields.String(required=True, description='topic'),
 'clusters': fields.String(required=True, description='The multi name'),
 'time': fields.String(required=True, description='The multi name'),})
@@ -219,7 +218,7 @@ class multi(Resource):
         dfs = pd.merge(df1, df2)
         # dfs.set_index('url', inplace=True)
         dfs.drop(['clusterid'], axis=1, inplace=True)
-        dfs.set_index('url', inplace=True)
+        #dfs.set_index('url', inplace=True)
         multiS = dfs.to_dict()
         return multiS
         # sim = cosine_similarity(tf)
