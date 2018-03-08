@@ -1,7 +1,7 @@
 Files (Development Phase)
 
 
-qupid
+>qupid
 ├── README.md
 ├── app.py
 ├── links
@@ -19,45 +19,42 @@ qupid
 
 
 Product:
-Dynamically N-based Multithreaded Web Scraper
-Latency which is measured in milliseconds
-Topic analysis perform via Latent DIrichlet allocation
-Document clustering via Kmeans where K- is dynamic assigned
-We call it dynamical because the parameter of K and N are determined by the numbers of requests
-
-Data in the folder url
-Vaccines 1282
-List 3848 (randomurls)
+* Dynamically N-based Multithreaded Web Scraper
+* Latency which is measured in milliseconds
+* Topic analysis perform via Latent DIrichlet allocation
+* Document clustering via Kmeans where K- is dynamic assigned
+* We call it dynamical because the parameter of K and N are determined by the numbers of requests
+* Sample urls
 
 Deployment (Optional)
-Basic Apache2.4
-Gunicorn create 4 child processes in virtual machine
+* Basic Apache2.4
+* Gunicorn create 4 child processes in virtual machine
 
 Log
-Apache2.4:Worker Process, Server Process
-Gunicorn: Applicattion exceution, Applications Errros
+* Apache2.4:Worker Process, Server Process
+* Gunicorn: Applicattion exceution, Applications Errros
 
 Failure handling
-Network failure: Url should be accessed in less than 5 seconds
-Processing failure: After 10 seconds available
-Error bot: Init.D script that act as a error bot in terms of failure
+* Network failure: Url should be accessed in less than 5 seconds
+* Processing failure: After 10 seconds available
+* Error bot: Init.D script that act as a error bot in terms of failure
 
 
 We used Flask Rest Plus to automatically create the view of the RestServerices https://github.com/noirbizarre/flask-restplus and their are two ways how the Rest Server can be accessed:
-Via Graphical Interface:Follow the Simple instructions on the User Interface
-Via Api:127.0.0.1:5000/Multiple/”Replace quotes and this by your request”
+* Via Graphical Interface:Follow the Simple instructions on the User Interface
+* Via Api:127.0.0.1:5000/Multiple/”Replace quotes and this by your request”
 
 Requirements:
-Tested on Mac OS
-Python 3.6.4
+* Tested on Mac OS
+* Python 3.6.4
 
 Additional Requirements: For Low Server Production
-Virtualty with Apache 2.4 and Reverse Proxy
-Gunicorn, Multiple workers and Logging with asynchronous workers
+* Virtualty with Apache 2.4 and Reverse Proxy
+* Gunicorn, Multiple workers and Logging with asynchronous workers
 
 
 Installation:
-There are two installation procedure you always have to install the basic version first. We also assume that the file run.py is below this directory. This is important for location searching. /home/qupid/qupid
+* There are two installation procedure you always have to install the basic version first. We also assume that the file run.py is below this directory. This is important for location searching. /home/qupid/qupid
 
 First approach:
 >sudo pip3 install - r requirements.txt
@@ -120,10 +117,10 @@ sudo systemctl status qupid | sed -n 's/.*Main PID: \(.*\)$/\1/g p' | cut -f1 -d
 
 Comment:
 Don’t forget to configure your firewall.
-Please consider the following option depending our usage scenario
-nginx : high-performance HTTP, reverse proxy, IMAP/POP3 proxy server
-haproxy : high performance load balancer
-varnish : caching HTTP reverse proxy
+* Please consider the following option depending our usage scenario
+* nginx : high-performance HTTP, reverse proxy, IMAP/POP3 proxy server
+* haproxy : high performance load balancer
+* varnish : caching HTTP reverse proxy
 
 
 
