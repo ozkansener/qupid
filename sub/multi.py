@@ -57,66 +57,39 @@ from sklearn.metrics.pairwise import cosine_similarity
 import time
 
 
-        #print(oz)
 
-
-
-api = Namespace('Multiple', description='Multiple Documents related operations')
-
-
-
-# multi = api.model('multi', {
-# 'url': fields.String(required=True, description='The Queryentifier'),
-# 'topics': fields.String(required=True, description='topic'),
-# 'clusterid': fields.String(required=True, description='id'),
-# 'clusters': fields.String(required=True, description='The multi name'),})
-
-# multi = api.model('url', {
-# 'url': fields.String(required=True, description='The Queryentifier'),
-# 'topic': fields.String(required=True, description='topic'),
-# # 'clusterid': fields.String(required=True, description='id'),
-# 'clusters': fields.String(required=True, description='The multi name'),})
-
-#
-# multi = api.model('url', {
-# 'url': fields.String(required=True, description='The Queryentifier'),
-# 'source': fields.String(required=True, description='topic'),
-# 'topic': fields.String(required=True, description='topic'),
-# 'clusters': fields.String(required=True, description='The multi name'),
-# 'time': fields.String(required=True, description='The multi name'),})
+api = Namespace('Multiple', description='Multiple Documents Web documents')
 
 multi = api.model('url', {
-'url': fields.String(required=True, description='The Queryentifier'),
-'topic': fields.String(required=True, description='topic'),
-'clusters': fields.String(required=True, description='The multi name'),
-'time': fields.String(required=True, description='The multi name'),})
+    'url': fields.String(required=True, description='The Query entifier'),
+    'topic': fields.String(required=True, description='Topic'),
+    'clusters': fields.String(required=True, description='Cluster'),
+    'time': fields.String(required=True, description='Time'), })
 
-
-# multi = api.model('multi', {
-# 'url': fields.String(required=True, description='The Queryentifier'),
-# 'topics': fields.String(required=True, description='topic'),
-# 'clusters': fields.String(required=True, description='The multi name'),})
-#
 
 # called by each thread
 def get_web_data(url):
-    try:
-        start = time.time()
-        article = Article(url)
-        article.download()
-        article.parse()
-        end = time.time()
-        tijd = (end - start)
-        date=article.publish_date
-        text = article.text
-        re.sub("[^0-9a-zA-Z]", " ", text)
-        filter(lambda x: not re.match(r'^\s*$', x), text)
-        return {'url': url, 'tekst': text, 'time': round(tijd)}
+    n = 0
+    seconds = 5
+    while n < seconds + 1:
+        n += 1
+        try:
+            start = time.time()
+            article = Article(url)
+            article.download()
+            article.parse()
+            end = time.time()
+            tijd = (end - start)
+            date=article.publish_date
+            text = article.text
+            re.sub("[^0-9a-zA-Z]", " ", text)
+            filter(lambda x: not re.match(r'^\s*$', x), text)
+            return {'url': url, 'tekst': text, 'time': round(tijd)}
 
-    except:
-        # pass
 
-        return {'url': 'not', 'tekst': 'not'}
+        except:
+            if n == seconds:
+                return {'url': 'not', 'tekst': 'not'}
 
 
 @api.route('/<Query>')
@@ -142,7 +115,7 @@ class multi(Resource):
         df1.drop(['tekst'], axis=1, inplace=True)
         #cat = df1['label'].values
         aantal = len(tekst)
-        print(aantal)
+        #print(aantal)
         #print(aantal)
 
         n_samples = 5000
@@ -150,10 +123,6 @@ class multi(Resource):
         n_components = aantal
         n_top_words = 5
 
-        # tfidf_vectorizer = TfidfVectorizer(max_df=0.95, min_df=2,
-        #                                    max_features=n_features,
-        #                                    stop_words='english')
-        # tfidf = tfidf_vectorizer.fit_transform(tekst)
         tf_vectorizer = CountVectorizer(max_df=0.95, min_df=2,
                                         max_features=n_features,
                                         stop_words='english')
@@ -175,15 +144,7 @@ class multi(Resource):
         print_top_words(lda, tf_feature_names, n_top_words)
         df1['topic'] = ozzy
 
-        from sklearn.naive_bayes import MultinomialNB
-        # clf = MultinomialNB().fit(tf, cat)
-        from sklearn.externals import joblib
-        # joblib.dump(clf, 'filename.pkl')
-        # clf = joblib.load('filename.pkl')
-        # # ttf = tf
-        # cats = clf.predict(tf)
-        # # # acc=np.mean(predicted == cat)
-        # cm = metrics.confusion_matrix(cat, predicted)
+
 
         true_k = int(aantal * 0.3)
         km = KMeans(n_clusters=true_k, init='k-means++', max_iter=100, n_init=1)
@@ -203,24 +164,21 @@ class multi(Resource):
         df2['clusters'] = df2['clusters'].astype(str).str.replace(r"[\[\]']", '')  # terms
         df2.insert(0, 'clusterid', range(0, 0 + len(df2)))
 
-        # pred=km.predict(tf)
         labels = km.labels_
-
-        # df["cluster"] = pd.Series(cols)
-        # df['cluster'] =
-        # catz=[]
-        # for i in cats:
-        #     caz=(i)
-        #     catz.append(caz)....
         df1['clusterid'] = labels
-        #df1['source'] = cats
-        #dfs = [df1, df2]
         dfs = pd.merge(df1, df2)
-        # dfs.set_index('url', inplace=True)
         dfs.drop(['clusterid'], axis=1, inplace=True)
-        #dfs.set_index('url', inplace=True)
         multiS = dfs.to_dict()
         return multiS
+        # from sklearn.naive_bayes import MultinomialNB
+        # # clf = MultinomialNB().fit(tf, cat)
+        # from sklearn.externals import joblib
+        # # joblib.dump(clf, 'filename.pkl')
+        # clf = joblib.load('filename.pkl')
+        # # ttf = tf
+        # cats = clf.predict(tf)
+        # # # acc=np.mean(predicted == cat)
+        # cm = metrics.confusion_matrix(cat, predicted)
         # sim = cosine_similarity(tf)
 
         '''Fetch a multi given its Queryentifier'''
