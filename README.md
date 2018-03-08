@@ -1,7 +1,7 @@
 Files (Development Phase)
 
-
->qupid
+>
+qupid
 ├── README.md
 ├── app.py
 ├── links
