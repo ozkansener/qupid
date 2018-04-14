@@ -1,7 +1,22 @@
 Big Data analytics require multi-faceted strategies for usage. With unstructured data this becomes even more complex because of the highly dimensionality of textual documents. The applied methods has the most influence on the functional and non-functional requirements for the intelligence (a.k.a. Knowledge gathering process) gathering process. Preprocessing Techniques like Term filtering, Stemming Graph preprocessing are techniques to normalize the textual data. Evaluation of the chosen methodology is hard. When you evaluate your result with users, the archived results are biased and metrics the F-measure are vulnerable for variance explosion. Therefore we rely on distance metrics which can represent the overall similarity between the content of the list of Web documents.
 Our framework representante Web documents in an unique way by combining multiple learning styles for a set of Web documents we provide the users of our framework a large amount of Information from different views with different levels.
 
-wrn, Multiple workers and Logging with asynchronous workers
+Our File Tree
+<pre><code>
+README.md
+app.py
+links/.DS_Store
+links/list.txt
+links/vaccine.txt
+logs/.DS_Store
+logs/.gunicorn_access.log.swp
+logs/.gunicorn_error.log.swp
+logs/gunicorn_access.log
+logs/gunicorn_error.log
+requirements.txt
+sub/__init__.py
+sub/multi.py
+</code></pre>
 
 
 Installation:
