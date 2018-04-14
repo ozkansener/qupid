@@ -92,7 +92,7 @@ sudo systemctl status qupid | sed -n 's/.*Main PID: \(.*\)$/\1/g p' | cut -f1 -d
 
 Comment:
 Don’t forget to configure your firewall.
-* Please consider the following option depending our usage scenario
+* Please consider the following option depending your usage scenario
 * nginx : high-performance HTTP, reverse proxy, IMAP/POP3 proxy server
 * haproxy : high performance load balancer
 * varnish : caching HTTP reverse proxy
