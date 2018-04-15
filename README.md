@@ -1,20 +1,20 @@
-Functionalities
+### Functionalities
 
-|Function                |What does it do?                       |To do                         |
+|Function                |What is it?                       |To do                         |
 |----------------|-------------------------------|-----------------------------|
-|Document Clustering (Dynamic Kmeans)|`'Isn't this fun?'`            |'Isn't this fun?'            |
-|Topic Modelling (LDA)         |`"Isn't this fun?"`            |"Isn't this fun?"            |
-|Classification          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
-|Latency test          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
-|Multi Threaded Crawler          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
-|List of Urls          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
-|Vaccination Corpus          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
+|Document Clustering (Dynamic Kmeans)|`Creates partitions`            |None            |
+|Topic Modelling (LDA)         |`Assigns a Topic`            |None            |
+|Classification          |`Predicts the label`|Requires a large sample|
+|Latency test          |`Response time of Webserver to reply on `|None|
+|Multi Threaded Scraper          |`High speed parallel Document text scraper`|None|
+|List of Urls          |`Random Urls`|None|
+|Vaccination Corpus          |`URLs about vaccination`|None|
 
-
+### Introduction
 Big Data analytics require multi-faceted strategies for usage. With unstructured data this becomes even more complex because of the highly dimensionality of textual documents. The applied methods has the most influence on the functional and non-functional requirements for the intelligence (a.k.a. Knowledge gathering process) gathering process. Preprocessing Techniques like Term filtering, Stemming Graph preprocessing are techniques to normalize the textual data. Evaluation of the chosen methodology is hard. When you evaluate your result with users, the archived results are biased and metrics the F-measure are vulnerable for variance explosion. Therefore we rely on distance metrics which can represent the overall similarity between the content of the list of Web documents.
 Our framework representante Web documents in an unique way by combining multiple learning styles for a set of Web documents we provide the users of our framework a large amount of Information from different views with different levels.
 
-Our File Tree
+### Our File Tree
 <pre><code>
 README.md
 app.py
@@ -32,7 +32,7 @@ sub/multi.py
 </code></pre>
 
 
-Installation:
+### Installation:
 * There are two installation procedure you always have to install the basic version first. We also assume that the file run.py is below this directory. This is important for location searching. /home/qupid/qupid
 
 First approach:
@@ -103,12 +103,9 @@ sudo systemctl status qupid | sed -n 's/.*Main PID: \(.*\)$/\1/g p' | cut -f1 -d
 </code></pre>
 
 
-Comment:
+### Comment:
 Don’t forget to configure your firewall.
 * Please consider the following option depending your usage scenario
 * nginx : high-performance HTTP, reverse proxy, IMAP/POP3 proxy server
 * haproxy : high performance load balancer
 * varnish : caching HTTP reverse proxy
-
-
-
