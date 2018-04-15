@@ -5,7 +5,7 @@
 |Document Clustering (Dynamic Kmeans)|`Creates partitions`            |None            |
 |Topic Modelling (LDA)         |`Assigns a Topic`            |None            |
 |Classification          |`Predicts the label`|Requires a large sample|
-|Latency test          |`Response time of Webserver to reply on `|None|
+|Latency test          |`Response time of Webserver`|None|
 |Multi Threaded Scraper          |`High speed parallel Document text scraper`|None|
 |List of Urls          |`Random Urls`|None|
 |Vaccination Corpus          |`URLs about vaccination`|None|
