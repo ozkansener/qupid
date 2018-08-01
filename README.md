@@ -109,3 +109,7 @@ Don’t forget to configure your firewall.
 * nginx : high-performance HTTP, reverse proxy, IMAP/POP3 proxy server
 * haproxy : high performance load balancer
 * varnish : caching HTTP reverse proxy
+
+Questions: ozkansener@gmail.com
+
+Vrije Universiteit Amsterdam
