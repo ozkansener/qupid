@@ -50,7 +50,7 @@ msgpack-python==0.5.4
 murmurhash==0.28.0
 networkx==2.1
 newspaper3k==0.2.6
-nltk==3.2.5
+nltk==3.4.5
 numpy==1.14.1
 pandas==0.22.0
 pathlib==1.0.1
